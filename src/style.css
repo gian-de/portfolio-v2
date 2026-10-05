@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Anton", "Arial Narrow", Impact, sans-serif;
+  --font-condensed: "Bebas Neue", "Arial Narrow", Impact, sans-serif;
+  --font-sans: "Outfit", "Avenir Next", "Segoe UI", sans-serif;
+  --color-wine: #470024;
+  --color-accent: #cff27e;
+  --color-ink: #100208;
+  --color-paper: #f4f0ea;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-wine);
+  color: white;
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #cff27e;
+  color: #470024;
+}
+
+:focus-visible {
+  outline: 0.125rem solid #cff27e;
+  outline-offset: 0.1875rem;
+}
+
+section:focus {
+  outline: none;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.075) 0.0625rem, transparent 0.0625rem),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.075) 0.0625rem, transparent 0.0625rem);
+  background-size: 5.25rem 5.25rem;
+  mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes drift {
+  50% {
+    transform: translate3d(0.5rem, -0.625rem, 0);
+  }
+}
+
+.drift {
+  animation: drift 6.5s ease-in-out infinite;
+}
+
+@keyframes streak {
+  0% {
+    transform: translateX(-40%);
+  }
+  100% {
+    transform: translateX(35%);
+  }
+}
+
+.streak {
+  animation: streak 3.2s ease-in-out infinite alternate;
+}
+
+.streak-delay {
+  animation-duration: 4.1s;
+  animation-delay: -1.2s;
+}
+
+.streak-slow {
+  animation-duration: 5s;
+  animation-delay: -0.4s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .marquee-track,
+  .drift,
+  .streak,
+  .streak-delay,
+  .streak-slow {
+    animation: none;
+  }
+}
